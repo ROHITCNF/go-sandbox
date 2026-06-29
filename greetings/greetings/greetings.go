@@ -20,6 +20,28 @@ func Hello(name string) (string, error) {
 	return message, nil
 }
 
+// hellos function returns a map with names and
+// messages for each name
+
+func Hellos(names []string) (map[string]string, error) {
+	//initialize a map  which can hold key bas string and value has string
+	// make === new in JS
+	messages := make(map[string]string)
+
+	//loop through the received names call Hello function for each name
+	for _, name := range names {
+		message, err := Hello(name)
+		if err != nil {
+			return nil, err
+		}
+
+		// no error means we have got our greeting messages
+		messages[name] = message
+	}
+	return messages, nil
+
+}
+
 // randomFormat can only be accessible in own package
 func randomFormat() string {
 	//slice of message formats
